@@ -16,4 +16,4 @@ java -jar resources/schemaspy-6.2.4.jar -configFile resources/schemaspy.properti
 The documentation will be generated as an HTML tree in the folder `doc`.
 
 ## Accessing the documentation
-You can access an [online version of the documentation]() built from the files in this repository.
+You can access an [online version of the documentation](https://crispy-bassoon-g6nol8v.pages.github.io/) built from the files in this repository.
