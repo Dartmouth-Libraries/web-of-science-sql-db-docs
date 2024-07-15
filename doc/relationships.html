@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>wos.restructure</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>wos</b></a><span class="navbar-brand" style="padding-left: 0">.restructure</span>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>All Relationships</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Diagrams</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <h5>By default only columns that are primary keys, foreign keys or indexes are shown.</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#compactDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact</a></li>
+                                    <li class=""><a href="#largeDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="compactDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactRelationshipsDiagram" name="compactRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/wos_book_notes.html" target="_top" title="wos_book_notes" alt="" coords="356,93,559,240">
+<area shape="rect" id="node42" href="tables/wos_summary.html" target="_top" title="wos_summary" alt="" coords="5,2149,271,2267">
+<area shape="rect" id="node2" href="tables/wos_address_names_email_addr.html" target="_top" title="wos_address_names_email_addr" alt="" coords="1093,585,1419,791">
+<area shape="rect" id="node40" href="tables/wos_address_names.html" target="_top" title="wos_address_names" alt="" coords="715,585,948,761">
+<area shape="rect" id="node3" href="tables/wos_reviewed_languages.html" target="_top" title="wos_reviewed_languages" alt="" coords="323,257,592,404">
+<area shape="rect" id="node4" href="tables/wos_publisher.html" target="_top" title="wos_publisher" alt="" coords="361,421,553,568">
+<area shape="rect" id="node5" href="tables/wos_addresses.html" target="_top" title="wos_addresses" alt="" coords="345,585,570,732">
+<area shape="rect" id="node6" href="tables/wos_conf_location.html" target="_top" title="wos_conf_location" alt="" coords="723,3408,940,3584">
+<area shape="rect" id="node36" href="tables/wos_conference.html" target="_top" title="wos_conference" alt="" coords="355,3215,560,3361">
+<area shape="rect" id="node7" href="tables/wos_page.html" target="_top" title="wos_page" alt="" coords="367,755,547,901">
+<area shape="rect" id="node8" href="tables/wos_subheadings.html" target="_top" title="wos_subheadings" alt="" coords="351,919,563,1065">
+<area shape="rect" id="node9" href="tables/wos_reprint_address_names.html" target="_top" title="wos_reprint_address_names" alt="" coords="685,2132,978,2308">
+<area shape="rect" id="node21" href="tables/wos_reprint_addresses.html" target="_top" title="wos_reprint_addresses" alt="" coords="331,1739,583,1885">
+<area shape="rect" id="node10" href="tables/wos_address_suborganizations.html" target="_top" title="wos_address_suborganizations" alt="" coords="673,779,989,955">
+<area shape="rect" id="node11" href="tables/wos_conf_sponsor.html" target="_top" title="wos_conf_sponsor" alt="" coords="722,3601,941,3777">
+<area shape="rect" id="node12" href="tables/wos_contributors.html" target="_top" title="wos_contributors" alt="" coords="354,1083,561,1229">
+<area shape="rect" id="node13" href="tables/wos_reprint_address_names_email_addr.html" target="_top" title="wos_reprint_address_names_email_addr" alt="" coords="1063,2132,1449,2337">
+<area shape="rect" id="node14" href="tables/wos_address_organizations.html" target="_top" title="wos_address_organizations" alt="" coords="688,199,975,375">
+<area shape="rect" id="node15" href="tables/wos_grants.html" target="_top" title="wos_grants" alt="" coords="345,1247,570,1393">
+<area shape="rect" id="node16" href="tables/wos_keywords.html" target="_top" title="wos_keywords" alt="" coords="363,1411,551,1557">
+<area shape="rect" id="node17" href="tables/wos_reprint_address_zip.html" target="_top" title="wos_reprint_address_zip" alt="" coords="699,1552,964,1728">
+<area shape="rect" id="node18" href="tables/wos_publisher_names.html" target="_top" title="wos_publisher_names" alt="" coords="709,5,953,181">
+<area shape="rect" id="node19" href="tables/wos_titles.html" target="_top" title="wos_titles" alt="" coords="363,1575,551,1721">
+<area shape="rect" id="node20" href="tables/wos_summary_names_email_addr.html" target="_top" title="wos_summary_names_email_addr" alt="" coords="663,3900,1000,4076">
+<area shape="rect" id="node41" href="tables/wos_summary_names.html" target="_top" title="wos_summary_names" alt="" coords="335,3900,579,4047">
+<area shape="rect" id="node22" href="tables/wos_keywords_plus.html" target="_top" title="wos_keywords_plus" alt="" coords="343,1903,571,2049">
+<area shape="rect" id="node23" href="tables/wos_headings.html" target="_top" title="wos_headings" alt="" coords="366,2067,549,2213">
+<area shape="rect" id="node24" href="tables/wos_abstracts.html" target="_top" title="wos_abstracts" alt="" coords="361,2231,553,2377">
+<area shape="rect" id="node25" href="tables/wos_reprint_address_suborganizations.html" target="_top" title="wos_reprint_address_suborganizations" alt="" coords="644,1745,1019,1921">
+<area shape="rect" id="node26" href="tables/wos_grant_agencies.html" target="_top" title="wos_grant_agencies" alt="" coords="716,972,947,1148">
+<area shape="rect" id="node27" href="tables/wos_doctypes.html" target="_top" title="wos_doctypes" alt="" coords="366,2395,549,2541">
+<area shape="rect" id="node28" href="tables/wos_normalized_doctypes.html" target="_top" title="wos_normalized_doctypes" alt="" coords="319,2559,595,2705">
+<area shape="rect" id="node29" href="tables/wos_subjects.html" target="_top" title="wos_subjects" alt="" coords="363,2723,551,2869">
+<area shape="rect" id="node30" href="tables/wos_book_desc.html" target="_top" title="wos_book_desc" alt="" coords="359,2887,555,3033">
+<area shape="rect" id="node31" href="tables/wos_grant_ids.html" target="_top" title="wos_grant_ids" alt="" coords="739,1165,924,1341">
+<area shape="rect" id="node32" href="tables/wos_normalized_languages.html" target="_top" title="wos_normalized_languages" alt="" coords="315,3051,600,3197">
+<area shape="rect" id="node33" href="tables/wos_address_zip.html" target="_top" title="wos_address_zip" alt="" coords="729,392,934,568">
+<area shape="rect" id="node34" href="tables/wos_conf_title.html" target="_top" title="wos_conf_title" alt="" coords="739,2828,923,3004">
+<area shape="rect" id="node35" href="tables/wos_abstract_paragraphs.html" target="_top" title="wos_abstract_paragraphs" alt="" coords="696,2325,967,2501">
+<area shape="rect" id="node37" href="tables/wos_reviewed_authors.html" target="_top" title="wos_reviewed_authors" alt="" coords="333,3379,582,3525">
+<area shape="rect" id="node38" href="tables/wos_languages.html" target="_top" title="wos_languages" alt="" coords="361,3543,553,3689">
+<area shape="rect" id="node39" href="tables/wos_references.html" target="_top" title="wos_references" alt="" coords="357,3707,557,3883">
+<area shape="rect" id="node43" href="tables/wos_dynamic_identifiers.html" target="_top" title="wos_dynamic_identifiers" alt="" coords="326,4064,589,4211">
+<area shape="rect" id="node44" href="tables/wos_conf_info.html" target="_top" title="wos_conf_info" alt="" coords="739,3021,924,3197">
+<area shape="rect" id="node45" href="tables/wos_conf_date.html" target="_top" title="wos_conf_date" alt="" coords="737,3215,925,3391">
+<area shape="rect" id="node46" href="tables/wos_reprint_address_organizations.html" target="_top" title="wos_reprint_address_organizations" alt="" coords="658,1939,1005,2115">
+<area shape="rect" id="node47" href="tables/wos_edition.html" target="_top" title="wos_edition" alt="" coords="367,4228,547,4375">
+<area shape="rect" id="node48" href="tables/wos_grant_data_items.html" target="_top" title="wos_grant_data_items" alt="" coords="681,1359,982,1535">
+</map>
+                                        <a name='diagram'><img id="compactDegreeImg" src="diagrams/summary/relationships.real.compact.png" usemap="#compactRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeRelationshipsDiagram" name="largeRelationshipsDiagram">
+<area shape="rect" id="node1" href="tables/wos_book_notes.html" target="_top" title="wos_book_notes" alt="" coords="356,93,559,245">
+<area shape="rect" id="node42" href="tables/wos_summary.html" target="_top" title="wos_summary" alt="" coords="5,3149,271,4445">
+<area shape="rect" id="node2" href="tables/wos_address_names_email_addr.html" target="_top" title="wos_address_names_email_addr" alt="" coords="1093,748,1419,959">
+<area shape="rect" id="node40" href="tables/wos_address_names.html" target="_top" title="wos_address_names" alt="" coords="715,748,948,1252">
+<area shape="rect" id="node3" href="tables/wos_reviewed_languages.html" target="_top" title="wos_reviewed_languages" alt="" coords="323,263,592,415">
+<area shape="rect" id="node4" href="tables/wos_publisher.html" target="_top" title="wos_publisher" alt="" coords="361,432,553,672">
+<area shape="rect" id="node5" href="tables/wos_addresses.html" target="_top" title="wos_addresses" alt="" coords="345,689,570,1076">
+<area shape="rect" id="node6" href="tables/wos_conf_location.html" target="_top" title="wos_conf_location" alt="" coords="723,4653,940,4893">
+<area shape="rect" id="node36" href="tables/wos_conference.html" target="_top" title="wos_conference" alt="" coords="355,4396,560,4695">
+<area shape="rect" id="node7" href="tables/wos_page.html" target="_top" title="wos_page" alt="" coords="367,1093,547,1333">
+<area shape="rect" id="node8" href="tables/wos_subheadings.html" target="_top" title="wos_subheadings" alt="" coords="351,1351,563,1503">
+<area shape="rect" id="node9" href="tables/wos_reprint_address_names.html" target="_top" title="wos_reprint_address_names" alt="" coords="685,2924,978,3340">
+<area shape="rect" id="node21" href="tables/wos_reprint_addresses.html" target="_top" title="wos_reprint_addresses" alt="" coords="331,2491,583,2877">
+<area shape="rect" id="node10" href="tables/wos_address_suborganizations.html" target="_top" title="wos_address_suborganizations" alt="" coords="673,1269,989,1451">
+<area shape="rect" id="node11" href="tables/wos_conf_sponsor.html" target="_top" title="wos_conf_sponsor" alt="" coords="722,4911,941,5092">
+<area shape="rect" id="node12" href="tables/wos_contributors.html" target="_top" title="wos_contributors" alt="" coords="354,1520,561,1877">
+<area shape="rect" id="node13" href="tables/wos_reprint_address_names_email_addr.html" target="_top" title="wos_reprint_address_names_email_addr" alt="" coords="1063,2924,1449,3135">
+<area shape="rect" id="node14" href="tables/wos_address_organizations.html" target="_top" title="wos_address_organizations" alt="" coords="688,321,975,503">
+<area shape="rect" id="node15" href="tables/wos_grants.html" target="_top" title="wos_grants" alt="" coords="345,1895,570,2105">
+<area shape="rect" id="node16" href="tables/wos_keywords.html" target="_top" title="wos_keywords" alt="" coords="363,2123,551,2275">
+<area shape="rect" id="node17" href="tables/wos_reprint_address_zip.html" target="_top" title="wos_reprint_address_zip" alt="" coords="699,2299,964,2509">
+<area shape="rect" id="node18" href="tables/wos_publisher_names.html" target="_top" title="wos_publisher_names" alt="" coords="709,5,953,304">
+<area shape="rect" id="node19" href="tables/wos_titles.html" target="_top" title="wos_titles" alt="" coords="363,2292,551,2473">
+<area shape="rect" id="node20" href="tables/wos_summary_names_email_addr.html" target="_top" title="wos_summary_names_email_addr" alt="" coords="663,5572,1000,5783">
+<area shape="rect" id="node41" href="tables/wos_summary_names.html" target="_top" title="wos_summary_names" alt="" coords="335,5572,579,6281">
+<area shape="rect" id="node22" href="tables/wos_keywords_plus.html" target="_top" title="wos_keywords_plus" alt="" coords="343,2895,571,3047">
+<area shape="rect" id="node23" href="tables/wos_headings.html" target="_top" title="wos_headings" alt="" coords="366,3064,549,3216">
+<area shape="rect" id="node24" href="tables/wos_abstracts.html" target="_top" title="wos_abstracts" alt="" coords="361,3233,553,3385">
+<area shape="rect" id="node25" href="tables/wos_reprint_address_suborganizations.html" target="_top" title="wos_reprint_address_suborganizations" alt="" coords="644,2527,1019,2708">
+<area shape="rect" id="node26" href="tables/wos_grant_agencies.html" target="_top" title="wos_grant_agencies" alt="" coords="716,1468,947,1679">
+<area shape="rect" id="node27" href="tables/wos_doctypes.html" target="_top" title="wos_doctypes" alt="" coords="366,3403,549,3555">
+<area shape="rect" id="node28" href="tables/wos_normalized_doctypes.html" target="_top" title="wos_normalized_doctypes" alt="" coords="319,3572,595,3724">
+<area shape="rect" id="node29" href="tables/wos_subjects.html" target="_top" title="wos_subjects" alt="" coords="363,3741,551,3923">
+<area shape="rect" id="node30" href="tables/wos_book_desc.html" target="_top" title="wos_book_desc" alt="" coords="359,3940,555,4180">
+<area shape="rect" id="node31" href="tables/wos_grant_ids.html" target="_top" title="wos_grant_ids" alt="" coords="739,1696,924,1877">
+<area shape="rect" id="node32" href="tables/wos_normalized_languages.html" target="_top" title="wos_normalized_languages" alt="" coords="315,4197,600,4379">
+<area shape="rect" id="node33" href="tables/wos_address_zip.html" target="_top" title="wos_address_zip" alt="" coords="729,520,934,731">
+<area shape="rect" id="node34" href="tables/wos_conf_title.html" target="_top" title="wos_conf_title" alt="" coords="739,3999,923,4180">
+<area shape="rect" id="node35" href="tables/wos_abstract_paragraphs.html" target="_top" title="wos_abstract_paragraphs" alt="" coords="696,3357,967,3539">
+<area shape="rect" id="node37" href="tables/wos_reviewed_authors.html" target="_top" title="wos_reviewed_authors" alt="" coords="333,4712,582,4864">
+<area shape="rect" id="node38" href="tables/wos_languages.html" target="_top" title="wos_languages" alt="" coords="361,4881,553,5063">
+<area shape="rect" id="node39" href="tables/wos_references.html" target="_top" title="wos_references" alt="" coords="357,5080,557,5555">
+<area shape="rect" id="node43" href="tables/wos_dynamic_identifiers.html" target="_top" title="wos_dynamic_identifiers" alt="" coords="326,6299,589,6480">
+<area shape="rect" id="node44" href="tables/wos_conf_info.html" target="_top" title="wos_conf_info" alt="" coords="739,4197,924,4379">
+<area shape="rect" id="node45" href="tables/wos_conf_date.html" target="_top" title="wos_conf_date" alt="" coords="737,4396,925,4636">
+<area shape="rect" id="node46" href="tables/wos_reprint_address_organizations.html" target="_top" title="wos_reprint_address_organizations" alt="" coords="658,2725,1005,2907">
+<area shape="rect" id="node47" href="tables/wos_edition.html" target="_top" title="wos_edition" alt="" coords="367,6497,547,6649">
+<area shape="rect" id="node48" href="tables/wos_grant_data_items.html" target="_top" title="wos_grant_data_items" alt="" coords="681,1895,982,2281">
+</map>
+                                        <a name='diagram'><img id="largeDegreeImg" src="diagrams/summary/relationships.real.large.png" usemap="#largeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="relationships.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

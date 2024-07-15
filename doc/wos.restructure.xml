@@ -1,0 +1,959 @@
+<?xml version="1.0" encoding="UTF-8"?><database name="wos" schema="restructure" type="PostgreSQL - 14.9 (Debian 14.9-1.pgdg110+1)">
+   <tables>
+      <table name="wos_abstract_paragraphs" numRows="61402312" remarks="Abstract paragraphs" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_abstract_paragraphs_id_abstract_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_abstracts"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="abstract_id" nullable="true" remarks="ID of parent abstract" size="10" type="int4" typeCode="4">
+            <parent column="abstract_id" foreignKey="wos_abstract_paragraphs_id_abstract_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_abstracts"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="paragraph_id" nullable="true" remarks="Order of abstract paragraph record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="paragraph_text" nullable="true" remarks="Abstract paragraph text" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_paragraph_id" unique="false">
+            <column ascending="true" name="paragraph_id"/>
+         </index>
+         <index name="wos_abstract_paragraphs_id_abstract_id_paragraph_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="abstract_id"/>
+            <column ascending="true" name="paragraph_id"/>
+         </index>
+      </table>
+      <table name="wos_abstracts" numRows="43971928" remarks="Abstracts" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_abstract_paragraphs_id_abstract_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_abstract_paragraphs"/>
+            <parent column="id" foreignKey="wos_abstracts_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="abstract_id" nullable="true" remarks="Order of abstract record" size="10" type="int4" typeCode="4">
+            <child column="abstract_id" foreignKey="wos_abstract_paragraphs_id_abstract_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_abstract_paragraphs"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="paragraph_count" nullable="true" remarks="Number of paragraphs in abstract" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_abstract_id" unique="false">
+            <column ascending="true" name="abstract_id"/>
+         </index>
+         <index name="idx_id" unique="false">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="wos_abstracts_id_abstract_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="abstract_id"/>
+         </index>
+      </table>
+      <table name="wos_address_names" numRows="213847808" remarks="Name Data from Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names_email_addr"/>
+            <parent column="id" foreignKey="wos_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent address record" size="10" type="int4" typeCode="4">
+            <child column="addr_id" foreignKey="wos_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names_email_addr"/>
+            <parent column="addr_id" foreignKey="wos_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name_id" nullable="true" remarks="Order of name record" size="10" type="int4" typeCode="4">
+            <child column="name_id" foreignKey="wos_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names_email_addr"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="role" nullable="true" remarks="Role of the person or entity identified by th ename" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="seq_no" nullable="true" remarks="Sequence number of name in list" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="addr_no_raw" nullable="true" remarks="Raw address numbers, may be more than one separated by space" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="reprint" nullable="true" remarks="Reprint author flag" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="r_id" nullable="true" remarks="ResearcherID identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="display_name" nullable="true" remarks="Name as displayed in record retrieved from database" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="full_name" nullable="true" remarks="Full name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="wos_standard" nullable="true" remarks="Name in Web of Science standard format" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="first_name" nullable="true" remarks="First (given) name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="middle_name" nullable="true" remarks="Middle name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="last_name" nullable="true" remarks="Last name (surname)" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="suffix" nullable="true" remarks="Name suffix" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_name_id" unique="false">
+            <column ascending="true" name="name_id"/>
+         </index>
+         <index name="wos_address_names_id_addr_id_name_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="name_id"/>
+         </index>
+      </table>
+      <table name="wos_address_names_email_addr" numRows="62179012" remarks="Email Data from Address Names" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name_id" nullable="true" remarks="ID of parent name" size="10" type="int4" typeCode="4">
+            <parent column="name_id" foreignKey="wos_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email_id" nullable="true" remarks="Order of email record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="email_addr" nullable="true" remarks="Email address" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_email_id" unique="false">
+            <column ascending="true" name="email_id"/>
+         </index>
+         <index name="wos_address_names_email_addr_id_addr_id_name_id_email_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="name_id"/>
+            <column ascending="true" name="email_id"/>
+         </index>
+      </table>
+      <table name="wos_address_organizations" numRows="293776540" remarks="Organization Data from Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="org_id" nullable="true" remarks="Order of organization record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="organization" nullable="true" remarks="Organization" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_org_id" unique="false">
+            <column ascending="true" name="org_id"/>
+         </index>
+         <index name="wos_address_organizations_id_addr_id_org_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="org_id"/>
+         </index>
+      </table>
+      <table name="wos_address_suborganizations" numRows="139159040" remarks="Suborganization Data from Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="suborg_id" nullable="true" remarks="Order of suborganization record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="suborganization" nullable="true" remarks="Suborganization" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_suborg_id" unique="false">
+            <column ascending="true" name="suborg_id"/>
+         </index>
+         <index name="wos_address_suborganizations_id_addr_id_suborg_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="suborg_id"/>
+         </index>
+      </table>
+      <table name="wos_address_zip" numRows="90926190" remarks="Zip Code Data from Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="zip_id" nullable="true" remarks="Order of ZIP record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="zip" nullable="true" remarks="Zip code or postal code" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="location" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_zip_id" unique="false">
+            <column ascending="true" name="zip_id"/>
+         </index>
+         <index name="wos_address_zip_id_addr_id_zip_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="zip_id"/>
+         </index>
+      </table>
+      <table name="wos_addresses" numRows="133759370" remarks="Item Record Address Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names"/>
+            <child column="id" foreignKey="wos_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_organizations"/>
+            <child column="id" foreignKey="wos_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_suborganizations"/>
+            <child column="id" foreignKey="wos_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_zip"/>
+            <parent column="id" foreignKey="wos_addresses_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="Order of address record" size="10" type="int4" typeCode="4">
+            <child column="addr_id" foreignKey="wos_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_names"/>
+            <child column="addr_id" foreignKey="wos_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_organizations"/>
+            <child column="addr_id" foreignKey="wos_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_suborganizations"/>
+            <child column="addr_id" foreignKey="wos_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_address_zip"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="addr_no" nullable="true" remarks="Address number used to link a specific author/publisher to a specific address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="full_address" nullable="true" remarks="Full address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="organization_count" nullable="true" remarks="Organizations count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="suborganization_count" nullable="true" remarks="Suborganizations count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="street" nullable="true" remarks="Street address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="city" nullable="true" remarks="City" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="state" nullable="true" remarks="U.S. State or Canadian province" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="country" nullable="true" remarks="Country" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="name_count" nullable="true" remarks="Count of publisher names" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_addr_id" unique="false">
+            <column ascending="true" name="addr_id"/>
+         </index>
+         <index name="wos_addresses_id_addr_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+         </index>
+      </table>
+      <table name="wos_book_desc" numRows="10996290" remarks="Book description" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_book_desc_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="desc_id" nullable="true" remarks="Order of book description record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="bk_binding" nullable="true" remarks="Book binding" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="bk_publisher" nullable="true" remarks="Book publisher" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="bk_prepay" nullable="true" remarks="Book prepayment information" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="bk_ordering" nullable="true" remarks="Book ordering information" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_desc_id" unique="false">
+            <column ascending="true" name="desc_id"/>
+         </index>
+         <index name="wos_book_desc_id_desc_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="desc_id"/>
+         </index>
+      </table>
+      <table name="wos_book_notes" numRows="16597573" remarks="Book notes" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_book_notes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="note_id" nullable="true" remarks="Order of book note record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="book_note" nullable="true" remarks="Book note" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_note_id" unique="false">
+            <column ascending="true" name="note_id"/>
+         </index>
+         <index name="wos_book_notes_id_note_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="note_id"/>
+         </index>
+      </table>
+      <table name="wos_conf_date" numRows="12592679" remarks="Summary Conference Date Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_conf_date_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conf_record_id" nullable="true" remarks="ID of parent conference record" size="10" type="int4" typeCode="4">
+            <parent column="conf_record_id" foreignKey="wos_conf_date_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="date_id" nullable="true" remarks="Order of conf date record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="conf_date" nullable="true" remarks="Conference date" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="conf_start" nullable="true" remarks="Conference start date" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="conf_end" nullable="true" remarks="Conference end date" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_date_id" unique="false">
+            <column ascending="true" name="date_id"/>
+         </index>
+         <index name="wos_conf_date_id_conf_record_id_date_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="conf_record_id"/>
+            <column ascending="true" name="date_id"/>
+         </index>
+      </table>
+      <table name="wos_conf_info" numRows="12625458" remarks="Summary Conference Info Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_conf_info_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conf_record_id" nullable="true" remarks="ID of parent conference record" size="10" type="int4" typeCode="4">
+            <parent column="conf_record_id" foreignKey="wos_conf_info_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="info_id" nullable="true" remarks="Order of conf info record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="conf_info" nullable="true" remarks="Concatenation of conference title, conference date and conference location" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_info_id" unique="false">
+            <column ascending="true" name="info_id"/>
+         </index>
+         <index name="wos_conf_info_id_conf_record_id_info_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="conf_record_id"/>
+            <column ascending="true" name="info_id"/>
+         </index>
+      </table>
+      <table name="wos_conf_location" numRows="12542411" remarks="Summary Conference Location Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_conf_location_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conf_record_id" nullable="true" remarks="ID of parent conference record" size="10" type="int4" typeCode="4">
+            <parent column="conf_record_id" foreignKey="wos_conf_location_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="location_id" nullable="true" remarks="Order of conf location record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="conf_host" nullable="true" remarks="Conference host location" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="conf_city" nullable="true" remarks="Conference city" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="conf_state" nullable="true" remarks="U.S. State or Canadian province" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_location_id" unique="false">
+            <column ascending="true" name="location_id"/>
+         </index>
+         <index name="wos_conf_location_id_conf_record_id_location_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="conf_record_id"/>
+            <column ascending="true" name="location_id"/>
+         </index>
+      </table>
+      <table name="wos_conf_sponsor" numRows="35910796" remarks="Summary Conference Sponsor Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_conf_sponsor_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conf_record_id" nullable="true" remarks="ID of parent conference record" size="10" type="int4" typeCode="4">
+            <parent column="conf_record_id" foreignKey="wos_conf_sponsor_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="sponsor_id" nullable="true" remarks="Order of conf sponsor record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="sponsor" nullable="true" remarks="Conference sponsor" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_sponsor_id" unique="false">
+            <column ascending="true" name="sponsor_id"/>
+         </index>
+         <index name="wos_conf_sponsor_id_conf_record_id_sponsor_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="conf_record_id"/>
+            <column ascending="true" name="sponsor_id"/>
+         </index>
+      </table>
+      <table name="wos_conf_title" numRows="12629294" remarks="Summary Conference Title Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_conf_title_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conf_record_id" nullable="true" remarks="ID of parent conference record" size="10" type="int4" typeCode="4">
+            <parent column="conf_record_id" foreignKey="wos_conf_title_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="title_id" nullable="true" remarks="Order of conf title record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="conf_title" nullable="true" remarks="Conference title" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_title_id" unique="false">
+            <column ascending="true" name="title_id"/>
+         </index>
+         <index name="wos_conf_title_id_conf_record_id_title_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="conf_record_id"/>
+            <column ascending="true" name="title_id"/>
+         </index>
+      </table>
+      <table name="wos_conference" numRows="12593049" remarks="Summary Conference Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_conf_date_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_date"/>
+            <child column="id" foreignKey="wos_conf_info_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_info"/>
+            <child column="id" foreignKey="wos_conf_location_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_location"/>
+            <child column="id" foreignKey="wos_conf_sponsor_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_sponsor"/>
+            <child column="id" foreignKey="wos_conf_title_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_title"/>
+            <parent column="id" foreignKey="wos_conference_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="conf_record_id" nullable="true" remarks="Order of conference record" size="10" type="int4" typeCode="4">
+            <child column="conf_record_id" foreignKey="wos_conf_date_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_date"/>
+            <child column="conf_record_id" foreignKey="wos_conf_info_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_info"/>
+            <child column="conf_record_id" foreignKey="wos_conf_location_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_location"/>
+            <child column="conf_record_id" foreignKey="wos_conf_sponsor_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_sponsor"/>
+            <child column="conf_record_id" foreignKey="wos_conf_title_id_conf_record_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conf_title"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="conf_id" nullable="true" remarks="Conference Identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="conf_info_count" nullable="true" remarks="Count of conf_info data. There may be multiple variations of conference information for one conference." size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="conf_title_count" nullable="true" remarks="Conference title count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="conf_date_count" nullable="true" remarks="Conference date count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="conf_location_count" nullable="true" remarks="Conference location count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="sponsor_count" nullable="true" remarks="Conference sponsor count" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_conf_record_id" unique="false">
+            <column ascending="true" name="conf_record_id"/>
+         </index>
+         <index name="wos_conference_id_conf_record_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="conf_record_id"/>
+         </index>
+      </table>
+      <table name="wos_contributors" numRows="73317152" remarks="Contributors" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_contributors_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_id" nullable="true" remarks="Order of name record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="role" nullable="true" remarks="Role of the person or entity identified by th ename" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="seq_no" nullable="true" remarks="Sequence number of name in list" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="r_id" nullable="true" remarks="ResearcherID identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="orcid_id" nullable="true" remarks="ORCID identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="display_name" nullable="true" remarks="Name as displayed in record retrieved from database" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="full_name" nullable="true" remarks="Full name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="first_name" nullable="true" remarks="First (given) name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="last_name" nullable="true" remarks="Last name (surname)" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_contributors_id_name_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="name_id"/>
+         </index>
+      </table>
+      <table name="wos_doctypes" numRows="91504368" remarks="Summary Document Type Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_doctypes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="doctype_id" nullable="true" remarks="Order of document type record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="doctype" nullable="true" remarks="Document type" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_doctype_id" unique="false">
+            <column ascending="true" name="doctype_id"/>
+         </index>
+         <index name="wos_doctypes_id_doctype_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="doctype_id"/>
+         </index>
+      </table>
+      <table name="wos_dynamic_identifiers" numRows="298230660" remarks="Dynamically-defined Identifier Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_dynamic_identifiers_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="dynamic_id" nullable="true" remarks="Order of identifier record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="identifier_type" nullable="true" remarks="Identifier type" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="identifier_value" nullable="true" remarks="Identifier value" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_dynamic_id" unique="false">
+            <column ascending="true" name="dynamic_id"/>
+         </index>
+         <index name="wos_dynamic_identifiers_id_dynamic_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="dynamic_id"/>
+         </index>
+      </table>
+      <table name="wos_edition" numRows="97605752" remarks="Web of Science database editions" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_edition_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="edition_id" nullable="true" remarks="Order of edition record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="edition" nullable="true" remarks="Associated Database Edition" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_edition_id" unique="false">
+            <column ascending="true" name="edition_id"/>
+         </index>
+         <index name="wos_edition_id_edition_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="edition_id"/>
+         </index>
+      </table>
+      <table name="wos_grant_agencies" numRows="90982824" remarks="Grant agencies" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_grant_agencies_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="grant_rec_id" nullable="true" remarks="ID of parent grant record" size="10" type="int4" typeCode="4">
+            <parent column="grant_rec_id" foreignKey="wos_grant_agencies_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="agency_id" nullable="true" remarks="Order of grant agency record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="grant_agency" nullable="true" remarks="Grant agency" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="pref" nullable="true" remarks="Flag to mark preferred agency name" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_agency_id" unique="false">
+            <column ascending="true" name="agency_id"/>
+         </index>
+         <index name="wos_grant_agencies_id_grant_rec_id_agency_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="grant_rec_id"/>
+            <column ascending="true" name="agency_id"/>
+         </index>
+      </table>
+      <table name="wos_grant_data_items" numRows="2625669" remarks="Grant data items" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_grant_data_items_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="grant_rec_id" nullable="true" remarks="ID of parent grant record" size="10" type="int4" typeCode="4">
+            <parent column="grant_rec_id" foreignKey="wos_grant_data_items_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="grant_data_id" nullable="true" remarks="Order of grant data item record record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="grant_id" nullable="true" remarks="Grant identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="grant_project_title" nullable="true" remarks="Grant project title" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="total_award_amount" nullable="true" remarks="Total awarded grant amount" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="currency" nullable="true" remarks="Currency of awarded amount" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="start_date" nullable="true" remarks="Start date" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="enddate" nullable="true" remarks="End date" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="principal_investigator" nullable="true" remarks="Principal investigator" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="principal_investigator_institution" nullable="true" remarks="Principal investigator institution" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_grant_data_id" unique="false">
+            <column ascending="true" name="grant_data_id"/>
+         </index>
+         <index name="wos_grant_data_items_id_grant_rec_id_grant_data_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="grant_rec_id"/>
+            <column ascending="true" name="grant_data_id"/>
+         </index>
+      </table>
+      <table name="wos_grant_ids" numRows="44472520" remarks="Grant identifiers" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_grant_ids_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="grant_rec_id" nullable="true" remarks="ID of parent grant record" size="10" type="int4" typeCode="4">
+            <parent column="grant_rec_id" foreignKey="wos_grant_ids_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="grant_id_id" nullable="true" remarks="Order of grant ID record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="grant_id" nullable="true" remarks="Grant identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_grant_id_id" unique="false">
+            <column ascending="true" name="grant_id_id"/>
+         </index>
+         <index name="wos_grant_ids_id_grant_rec_id_grant_id_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="grant_rec_id"/>
+            <column ascending="true" name="grant_id_id"/>
+         </index>
+      </table>
+      <table name="wos_grants" numRows="49993724" remarks="Grant Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_grant_agencies_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grant_agencies"/>
+            <child column="id" foreignKey="wos_grant_data_items_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grant_data_items"/>
+            <child column="id" foreignKey="wos_grant_ids_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grant_ids"/>
+            <parent column="id" foreignKey="wos_grants_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="grant_rec_id" nullable="true" remarks="Order of grant record data" size="10" type="int4" typeCode="4">
+            <child column="grant_rec_id" foreignKey="wos_grant_agencies_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grant_agencies"/>
+            <child column="grant_rec_id" foreignKey="wos_grant_data_items_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grant_data_items"/>
+            <child column="grant_rec_id" foreignKey="wos_grant_ids_id_grant_rec_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grant_ids"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="grant_source" nullable="true" remarks="Grant source" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="grant_id_count" nullable="true" remarks="Count of grant IDs" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="grant_data_item_count" nullable="true" remarks="Count of grant data items" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_grant_rec_id" unique="false">
+            <column ascending="true" name="grant_rec_id"/>
+         </index>
+         <index name="wos_grants_id_grant_rec_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="grant_rec_id"/>
+         </index>
+      </table>
+      <table name="wos_headings" numRows="89770130" remarks="High Level Subject Headings" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_headings_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="heading_id" nullable="true" remarks="Order of heading record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="heading" nullable="true" remarks="Keyword" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_heading_id" unique="false">
+            <column ascending="true" name="heading_id"/>
+         </index>
+         <index name="wos_headings_id_heading_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="heading_id"/>
+         </index>
+      </table>
+      <table name="wos_keywords" numRows="161744460" remarks="Keywords" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_keywords_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="keyword_id" nullable="true" remarks="Order of keyword record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="keyword" nullable="true" remarks="Keyword" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_keyword_id" unique="false">
+            <column ascending="true" name="keyword_id"/>
+         </index>
+         <index name="wos_keywords_id_keyword_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="keyword_id"/>
+         </index>
+      </table>
+      <table name="wos_keywords_plus" numRows="226386320" remarks="Keywords Plus. Keywords generated from the titles of cited references." schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_keywords_plus_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="keyword_id" nullable="true" remarks="Order of keyword record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="keyword_plus" nullable="true" remarks="Keyword Plus" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_keywords_plus_id_keyword_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="keyword_id"/>
+         </index>
+      </table>
+      <table name="wos_languages" numRows="86886016" remarks="Full Record Metadata Language Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_languages_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="language_id" nullable="true" remarks="Order of language record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="language" nullable="true" remarks="Language" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="language_type" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_language_id" unique="false">
+            <column ascending="true" name="language_id"/>
+         </index>
+         <index name="wos_languages_id_language_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="language_id"/>
+         </index>
+      </table>
+      <table name="wos_normalized_doctypes" numRows="90965450" remarks="Full Record Metadata Normalized Document Type Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_normalized_doctypes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="doctype_id" nullable="true" remarks="Order of document type record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="doctype" nullable="true" remarks="Normalized document type" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_normalized_doctypes_id_doctype_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="doctype_id"/>
+         </index>
+      </table>
+      <table name="wos_normalized_languages" numRows="86891024" remarks="Full Record Metadata Normalized Language Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_normalized_languages_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="language_id" nullable="true" remarks="Order of language record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="language" nullable="true" remarks="Normalized language" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="language_type" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_normalized_languages_id_language_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="language_id"/>
+         </index>
+      </table>
+      <table name="wos_page" numRows="87332890" remarks="Pagination Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_page_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="page_id" nullable="true" remarks="Order of pagination record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="page_value" nullable="true" remarks="Pagination.raw_data text" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="page_begin" nullable="true" remarks="Starting page number" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="page_end" nullable="true" remarks="Ending page number" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="page_count" nullable="true" remarks="Page count" size="2147483647" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="wos_page_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="idx_page_id" unique="false">
+            <column ascending="true" name="page_id"/>
+         </index>
+         <index name="wos_page_id_page_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="page_id"/>
+         </index>
+      </table>
+      <table name="wos_publisher" numRows="86053930" remarks="Summary Publisher Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_publisher_names_id_publisher_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_publisher_names"/>
+            <parent column="id" foreignKey="wos_publisher_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="publisher_id" nullable="true" remarks="Order of publisher record" size="10" type="int4" typeCode="4">
+            <child column="publisher_id" foreignKey="wos_publisher_names_id_publisher_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_publisher_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="addr_no" nullable="true" remarks="Address number. Used to link a specific author/publisher to a specific address." size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="full_address" nullable="true" remarks="Full address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="city" nullable="true" remarks="City" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="name_count" nullable="true" remarks="Count of publisher names" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_publisher_id" unique="false">
+            <column ascending="true" name="publisher_id"/>
+         </index>
+         <index name="wos_publisher_id_publisher_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="publisher_id"/>
+         </index>
+      </table>
+      <table name="wos_publisher_names" numRows="86589024" remarks="Name Data from Publishers" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_publisher_names_id_publisher_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_publisher"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="publisher_id" nullable="true" remarks="ID of parent publisher" size="10" type="int4" typeCode="4">
+            <parent column="publisher_id" foreignKey="wos_publisher_names_id_publisher_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_publisher"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name_id" nullable="true" remarks="Order of name record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="role" nullable="true" remarks="Role of the person or entity identified by th ename" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="seq_no" nullable="true" remarks="Sequence number of name in list" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="addr_no_raw" nullable="true" remarks="Raw address numbers, may be more than one separated by space" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="display_name" nullable="true" remarks="Name as displayed in record retrieved from database" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="full_name" nullable="true" remarks="Full name" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_publisher_names_id_publisher_id_name_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="publisher_id"/>
+            <column ascending="true" name="name_id"/>
+         </index>
+      </table>
+      <table name="wos_references" numRows="1876236200" remarks="Reference Details" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_references_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ref_id" nullable="true" remarks="Order of reference record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="occurrence_order" nullable="true" remarks="Order of occurence in publication" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="cited_id" nullable="true" remarks="WoS Identifier of cited publication" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="cited_author" nullable="true" remarks="Cited Author" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="assignee" nullable="true" remarks="Assignee" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="year" nullable="true" remarks="Year" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="page" nullable="true" remarks="Page" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="volume" nullable="true" remarks="Volume" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="cited_title" nullable="true" remarks="Cited Title - Cited Title is only available is the cited reference clusters with a source item, or if a 'full Cited Reference' capture provided one" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="cited_work" nullable="true" remarks="Cited Work" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="doi" nullable="true" remarks="Digital Object Identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="art_no" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="patent_no" nullable="true" remarks="Patent Number" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_cited_id" unique="false">
+            <column ascending="true" name="cited_id"/>
+         </index>
+         <index name="idx_ref_id" unique="false">
+            <column ascending="true" name="ref_id"/>
+         </index>
+         <index name="wos_references_id_ref_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="ref_id"/>
+         </index>
+      </table>
+      <table name="wos_reprint_address_names" numRows="61046468" remarks="Name Data from Reprint Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_reprint_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names_email_addr"/>
+            <parent column="id" foreignKey="wos_reprint_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent reprint address record" size="10" type="int4" typeCode="4">
+            <child column="addr_id" foreignKey="wos_reprint_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names_email_addr"/>
+            <parent column="addr_id" foreignKey="wos_reprint_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name_id" nullable="true" remarks="Order of name record" size="10" type="int4" typeCode="4">
+            <child column="name_id" foreignKey="wos_reprint_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names_email_addr"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="role" nullable="true" remarks="Role of the person or entity identified by th ename" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="seq_no" nullable="true" remarks="Sequence number of name in list" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="addr_no_raw" nullable="true" remarks="Raw address numbers, may be more than one separated by space" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="reprint" nullable="true" remarks="Reprint author flag" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="display_name" nullable="true" remarks="Name as displayed in record retrieved from database" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="full_name" nullable="true" remarks="Full name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="wos_standard" nullable="true" remarks="Name in Web of Science standard format" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="first_name" nullable="true" remarks="First (given) name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="last_name" nullable="true" remarks="Last name (surname)" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reprint_address_names_id_addr_id_name_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="name_id"/>
+         </index>
+      </table>
+      <table name="wos_reprint_address_names_email_addr" numRows="34990568" remarks="Email Data from Reprint Address Names" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_reprint_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent reprint address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_reprint_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name_id" nullable="true" remarks="ID of parent name" size="10" type="int4" typeCode="4">
+            <parent column="name_id" foreignKey="wos_reprint_address_names_email_addr_id_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email_id" nullable="true" remarks="Order of email record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="email_addr" nullable="true" remarks="Email address" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reprint_address_names_email_id_addr_id_name_id_email_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="name_id"/>
+            <column ascending="true" name="email_id"/>
+         </index>
+      </table>
+      <table name="wos_reprint_address_organizations" numRows="130387024" remarks="Organization Data from Reprint Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_reprint_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent reprint address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_reprint_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="org_id" nullable="true" remarks="Order of organization record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="organization" nullable="true" remarks="Organization" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reprint_address_organizations_id_addr_id_org_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="org_id"/>
+         </index>
+      </table>
+      <table name="wos_reprint_address_suborganizations" numRows="62860676" remarks="Suborganization Data from Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_reprint_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent reprint address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_reprint_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="suborg_id" nullable="true" remarks="Order of suborganization record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="suborganization" nullable="true" remarks="Suborganization" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reprint_address_suborganizations_id_addr_id_suborg_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="suborg_id"/>
+         </index>
+      </table>
+      <table name="wos_reprint_address_zip" numRows="50943132" remarks="Zip Code Data from Reprint Addresses" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_reprint_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="ID of parent reprint address" size="10" type="int4" typeCode="4">
+            <parent column="addr_id" foreignKey="wos_reprint_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="zip_id" nullable="true" remarks="Order of ZIP record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="zip" nullable="true" remarks="Zip code or postal code" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="location" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reprint_address_zip_id_addr_id_zip_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+            <column ascending="true" name="zip_id"/>
+         </index>
+      </table>
+      <table name="wos_reprint_addresses" numRows="60586036" remarks="Item Record Reprint Address Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_reprint_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names"/>
+            <child column="id" foreignKey="wos_reprint_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_organizations"/>
+            <child column="id" foreignKey="wos_reprint_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_suborganizations"/>
+            <child column="id" foreignKey="wos_reprint_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_zip"/>
+            <parent column="id" foreignKey="wos_reprint_addresses_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="addr_id" nullable="true" remarks="Order of reprint address record" size="10" type="int4" typeCode="4">
+            <child column="addr_id" foreignKey="wos_reprint_address_names_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_names"/>
+            <child column="addr_id" foreignKey="wos_reprint_address_organizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_organizations"/>
+            <child column="addr_id" foreignKey="wos_reprint_address_suborganizations_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_suborganizations"/>
+            <child column="addr_id" foreignKey="wos_reprint_address_zip_id_addr_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_address_zip"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="addr_no" nullable="true" remarks="Address number used to link a specific author/publisher to a specific address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="full_address" nullable="true" remarks="Full address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="organization_count" nullable="true" remarks="Organizations count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="suborganization_count" nullable="true" remarks="Suborganizations count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="street" nullable="true" remarks="Street address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="city" nullable="true" remarks="City" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="state" nullable="true" remarks="U.S. State or Canadian province" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="country" nullable="true" remarks="Country" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="name_count" nullable="true" remarks="Count of publisher names" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reprint_addresses_id_addr_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="addr_id"/>
+         </index>
+      </table>
+      <table name="wos_reviewed_authors" numRows="2967360" remarks="Item Record Authors of Reviewed Work Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_reviewed_authors_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="author_id" nullable="true" remarks="Order of author record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="author" nullable="true" remarks="Reviewed work author" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_author_id" unique="false">
+            <column ascending="true" name="author_id"/>
+         </index>
+         <index name="wos_reviewed_authors_id_author_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="author_id"/>
+         </index>
+      </table>
+      <table name="wos_reviewed_languages" numRows="2356976" remarks="Item Record Language of Reviewed Work Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_reviewed_languages_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="language_id" nullable="true" remarks="Order of language record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="language" nullable="true" remarks="Language" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_reviewed_languages_id_language_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="language_id"/>
+         </index>
+      </table>
+      <table name="wos_subheadings" numRows="78951856" remarks="Subject category subheadings" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_subheadings_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="subheading_id" nullable="true" remarks="Order of subheading record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="subheading" nullable="true" remarks="Keyword" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_subheading_id" unique="false">
+            <column ascending="true" name="subheading_id"/>
+         </index>
+         <index name="wos_subheadings_id_subheading_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="subheading_id"/>
+         </index>
+      </table>
+      <table name="wos_subjects" numRows="261779344" remarks="Subject categories" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_subjects_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="subject_id" nullable="true" remarks="Order of subject record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="subject" nullable="true" remarks="Subject category" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="ascatype" nullable="true" remarks="Defines the two collections of subject categories used to classify journals in Web of Knowledge" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="idx_subject_id" unique="false">
+            <column ascending="true" name="subject_id"/>
+         </index>
+         <index name="wos_subjects_id_subject_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="subject_id"/>
+         </index>
+      </table>
+      <table name="wos_summary" numRows="76656010" remarks="Summary Record Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_abstracts_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_abstracts"/>
+            <child column="id" foreignKey="wos_addresses_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_addresses"/>
+            <child column="id" foreignKey="wos_book_desc_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_book_desc"/>
+            <child column="id" foreignKey="wos_book_notes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_book_notes"/>
+            <child column="id" foreignKey="wos_conference_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_conference"/>
+            <child column="id" foreignKey="wos_contributors_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_contributors"/>
+            <child column="id" foreignKey="wos_doctypes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_doctypes"/>
+            <child column="id" foreignKey="wos_dynamic_identifiers_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_dynamic_identifiers"/>
+            <child column="id" foreignKey="wos_edition_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_edition"/>
+            <child column="id" foreignKey="wos_grants_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_grants"/>
+            <child column="id" foreignKey="wos_headings_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_headings"/>
+            <child column="id" foreignKey="wos_keywords_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_keywords"/>
+            <child column="id" foreignKey="wos_keywords_plus_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_keywords_plus"/>
+            <child column="id" foreignKey="wos_languages_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_languages"/>
+            <child column="id" foreignKey="wos_normalized_doctypes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_normalized_doctypes"/>
+            <child column="id" foreignKey="wos_normalized_languages_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_normalized_languages"/>
+            <child column="id" foreignKey="wos_page_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_page"/>
+            <child column="id" foreignKey="wos_publisher_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_publisher"/>
+            <child column="id" foreignKey="wos_references_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_references"/>
+            <child column="id" foreignKey="wos_reprint_addresses_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reprint_addresses"/>
+            <child column="id" foreignKey="wos_reviewed_authors_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reviewed_authors"/>
+            <child column="id" foreignKey="wos_reviewed_languages_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_reviewed_languages"/>
+            <child column="id" foreignKey="wos_subheadings_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_subheadings"/>
+            <child column="id" foreignKey="wos_subjects_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_subjects"/>
+            <child column="id" foreignKey="wos_summary_names_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary_names"/>
+            <child column="id" foreignKey="wos_titles_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_titles"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="coll_id" nullable="true" remarks="Collection ID" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="pubyear" nullable="true" remarks="Publication year" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="pubmonth" nullable="true" remarks="Publication month" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="coverdate" nullable="true" remarks="Concatenation of pubyear and pubmonth" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="vol" nullable="true" remarks="Volume" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="issue" nullable="true" remarks="Issue" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="supplement" nullable="true" remarks="Journal Supplement" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="special_issue" nullable="true" remarks="Journal Special Issue" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="part_no" nullable="true" remarks="Journal part number" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="pubtype" nullable="true" remarks="Publication type" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="has_abstract" nullable="true" remarks="Whether abstract is available" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="sortdate" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="title_count" nullable="true" remarks="Number of source title variations" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="name_count" nullable="true" remarks="Name count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="doctype_count" nullable="true" remarks="Document type count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="conference_count" nullable="true" remarks="Conference count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="language_count" nullable="true" remarks="Language count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="normalized_language_count" nullable="true" remarks="Normalized language count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="normalized_doctype_count" nullable="true" remarks="Normalized doctype count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="reference_count" nullable="true" remarks="Reference count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="address_count" nullable="true" remarks="Address count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="headings_count" nullable="true" remarks="Heading count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="subheadings_count" nullable="true" remarks="Subheading count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="subjects_count" nullable="true" remarks="Subjects count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="fund_ack" nullable="true" remarks="Text of funding acknowledgment" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="grants_count" nullable="true" remarks="Grant count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="keyword_count" nullable="true" remarks="Keyword count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="abstract_count" nullable="true" remarks="Abstract count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="29" name="item_ids" nullable="true" remarks="ISI Document Solution identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="30" name="item_ids_avail" nullable="true" remarks="IDS availability flag" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="31" name="bib_id" nullable="true" remarks="Concatenation of volume, issue, page span, date" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="32" name="bib_pagecount" nullable="true" remarks="Page count of source publication" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="33" name="bib_pagecount_type" nullable="true" remarks="Undocumented" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="34" name="reviewed_language_count" nullable="true" remarks="Count of languages of reviewed work" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="35" name="reviewed_author_count" nullable="true" remarks="Count of authors of reviewed work" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="36" name="reviewed_year" nullable="true" remarks="Reviewed work year" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="37" name="keywords_plus_count" nullable="true" remarks="Keywords plus count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="38" name="book_chapters" nullable="true" remarks="Book chapter count" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="39" name="book_pages" nullable="true" remarks="Book pages" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="40" name="book_notes_count" nullable="true" remarks="Count of book notes" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="41" name="contributor_count" nullable="true" remarks="Contributor count" size="2147483647" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="wos_summary_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="wos_summary_names" numRows="334887456" remarks="Name Data from Record Summary" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <child column="id" foreignKey="wos_summary_names_email_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary_names_email_addr"/>
+            <parent column="id" foreignKey="wos_summary_names_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_id" nullable="true" remarks="Order of name record" size="10" type="int4" typeCode="4">
+            <child column="name_id" foreignKey="wos_summary_names_email_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary_names_email_addr"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="role" nullable="true" remarks="Role of the person or entity identified by th ename" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="seq_no" nullable="true" remarks="Sequence number of name in list" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="addr_no_raw" nullable="true" remarks="Raw address numbers, may be more than one separated by space" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="reprint" nullable="true" remarks="Reprint author flag" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="lang_id" nullable="true" remarks="Language of the name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="r_id" nullable="true" remarks="ResearcherID identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="r_id_tr" nullable="true" remarks="ResearcherID identifier as captured by TR" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="orcid_id" nullable="true" remarks="ORCID identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="orcid_id_tr" nullable="true" remarks="ORCID identifier as captured by TR" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="dais_id" nullable="true" remarks="Distinct Author Identification System identifier" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="display" nullable="true" remarks="Display flag used to indicate whether a name is displayed in full record." size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="display_name" nullable="true" remarks="Name as displayed in record retrieved from database" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="full_name" nullable="true" remarks="Full name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="wos_standard" nullable="true" remarks="Name in Web of Science standard format" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="prefix" nullable="true" remarks="Name prefix" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="first_name" nullable="true" remarks="First (given) name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="middle_name" nullable="true" remarks="Middle name" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="initials" nullable="true" remarks="Initials" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="last_name" nullable="true" remarks="Last name (surname)" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="suffix" nullable="true" remarks="Name suffix" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_summary_names_id_name_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="name_id"/>
+         </index>
+      </table>
+      <table name="wos_summary_names_email_addr" numRows="57001184" remarks="Email Address Data from Record Summary" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_summary_names_email_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name_id" nullable="true" remarks="ID of parent name" size="10" type="int4" typeCode="4">
+            <parent column="name_id" foreignKey="wos_summary_names_email_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary_names"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="email_id" nullable="true" remarks="Order of email record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="email_addr" nullable="true" remarks="Email address" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="lang_id" nullable="true" remarks="Language of email address" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_summary_names_email_addr_id_name_id_email_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="name_id"/>
+            <column ascending="true" name="email_id"/>
+         </index>
+      </table>
+      <table name="wos_titles" numRows="496441150" remarks="Title Data" schema="restructure" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
+            <parent column="id" foreignKey="wos_titles_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="title_id" nullable="true" remarks="Order of title record" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="title_type" nullable="true" remarks="Title type" size="2147483647" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="title" nullable="true" remarks="Title" size="2147483647" type="varchar" typeCode="12"/>
+         <index name="wos_titles_id_title_id_key" unique="true">
+            <column ascending="true" name="id"/>
+            <column ascending="true" name="title_id"/>
+         </index>
+      </table>
+   </tables>
+</database>
