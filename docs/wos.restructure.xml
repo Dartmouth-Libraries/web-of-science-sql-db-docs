@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><database name="wos" schema="restructure" type="PostgreSQL - 14.9 (Debian 14.9-1.pgdg110+1)">
+<?xml version="1.0" encoding="UTF-8"?><database name="wos" schema="restructure" type="PostgreSQL - 14.12 (Debian 14.12-1.pgdg110+1)">
    <tables>
       <table name="wos_abstract_paragraphs" numRows="61402312" remarks="Abstract paragraphs" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
@@ -334,7 +334,7 @@
             <column ascending="true" name="conf_record_id"/>
          </index>
       </table>
-      <table name="wos_contributors" numRows="73317152" remarks="Contributors" schema="restructure" type="TABLE">
+      <table name="wos_contributors" numRows="73317150" remarks="Contributors" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <parent column="id" foreignKey="wos_contributors_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
          </column>
@@ -366,7 +366,7 @@
             <column ascending="true" name="doctype_id"/>
          </index>
       </table>
-      <table name="wos_dynamic_identifiers" numRows="298230660" remarks="Dynamically-defined Identifier Data" schema="restructure" type="TABLE">
+      <table name="wos_dynamic_identifiers" numRows="298230656" remarks="Dynamically-defined Identifier Data" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <parent column="id" foreignKey="wos_dynamic_identifiers_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
          </column>
@@ -480,7 +480,7 @@
             <column ascending="true" name="grant_rec_id"/>
          </index>
       </table>
-      <table name="wos_headings" numRows="89770130" remarks="High Level Subject Headings" schema="restructure" type="TABLE">
+      <table name="wos_headings" numRows="89770128" remarks="High Level Subject Headings" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <parent column="id" foreignKey="wos_headings_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
          </column>
@@ -494,7 +494,7 @@
             <column ascending="true" name="heading_id"/>
          </index>
       </table>
-      <table name="wos_keywords" numRows="161744460" remarks="Keywords" schema="restructure" type="TABLE">
+      <table name="wos_keywords" numRows="161744464" remarks="Keywords" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <parent column="id" foreignKey="wos_keywords_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
          </column>
@@ -534,7 +534,7 @@
             <column ascending="true" name="language_id"/>
          </index>
       </table>
-      <table name="wos_normalized_doctypes" numRows="90965450" remarks="Full Record Metadata Normalized Document Type Data" schema="restructure" type="TABLE">
+      <table name="wos_normalized_doctypes" numRows="90965448" remarks="Full Record Metadata Normalized Document Type Data" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <parent column="id" foreignKey="wos_normalized_doctypes_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
          </column>
@@ -557,7 +557,7 @@
             <column ascending="true" name="language_id"/>
          </index>
       </table>
-      <table name="wos_page" numRows="87332890" remarks="Pagination Data" schema="restructure" type="TABLE">
+      <table name="wos_page" numRows="87332888" remarks="Pagination Data" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <parent column="id" foreignKey="wos_page_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
          </column>
@@ -894,7 +894,7 @@
             <column ascending="true" name="id"/>
          </index>
       </table>
-      <table name="wos_summary_names" numRows="334887456" remarks="Name Data from Record Summary" schema="restructure" type="TABLE">
+      <table name="wos_summary_names" numRows="334887460" remarks="Name Data from Record Summary" schema="restructure" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="true" remarks="WOS Record ID" size="2147483647" type="varchar" typeCode="12">
             <child column="id" foreignKey="wos_summary_names_email_addr_id_name_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary_names_email_addr"/>
             <parent column="id" foreignKey="wos_summary_names_id_fkey" implied="false" onDeleteCascade="true" schema="restructure" table="wos_summary"/>
